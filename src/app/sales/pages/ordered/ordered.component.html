@@ -1,0 +1,85 @@
+<div class="text-layout">
+  <h1>Pipes personalizados</h1>
+  <p>El pipe personalizado {{ "mayusculas" | mayusculas: toUpperCase }}</p>
+</div>
+
+<p-toolbar>
+  <div class="p-toolbar-group-left"></div>
+
+  <div class="p-toolbar-group-right">
+    <button
+      pButton
+      label="Toggle UpperCase"
+      (click)="toUpperCase = !toUpperCase"
+      class="p-mr-1 p-button-warning"
+    ></button>
+
+    <button
+      pButton
+      icon="pi-sort"
+      label="Por nombre"
+      (click)="changeOrder(heroProperty.name)"
+      class="p-mr-1"
+    ></button>
+
+    <button
+      pButton
+      icon="pi pi-sort"
+      label="Vuela"
+      class="p-mr-1 p-button-success"
+      (click)="changeOrder(heroProperty.fly)"
+    ></button>
+
+    <button
+      pButton
+      icon="pi pi-palette"
+      label="Por color"
+      class="p-mr-1 p-button-help"
+      (click)="changeOrder(heroProperty.color)"
+    ></button>
+  </div>
+</p-toolbar>
+
+<div class="p-grid">
+  <div class="p-col">
+    <p-table [value]="heroes | sort: propertySelected">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Fly</th>
+          <th>Color</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-pj>
+        <tr>
+          <td>{{ pj.name }}</td>
+          <td>{{ pj.fly | fly }}</td>
+          <td>{{ pj.color | flyColor | titlecase }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<br><br><br>
+
+<div class="p-grid">
+  <div class="p-col">
+    <p-table [value]="heroes | slice:0">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="name">Nombre <p-sortIcon field="name"></p-sortIcon></th>
+          <th pSortableColumn="fly">Vuela <p-sortIcon field="fly"></p-sortIcon></th>
+          <th pSortableColumn="color">Color <p-sortIcon field="color"></p-sortIcon></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-pj>
+        <tr>
+          <td>{{ pj.name }}</td>
+          <td>{{ pj.fly | fly }}</td>
+          <td>{{ pj.color | flyColor | titlecase }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

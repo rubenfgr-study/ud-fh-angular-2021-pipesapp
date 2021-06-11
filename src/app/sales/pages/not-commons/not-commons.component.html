@@ -1,0 +1,74 @@
+<div class="text-layout">
+  <h1>DecimalPipe y Porcentaje</h1>
+  <p>Pipes incluídos en Angular - Usualmente en el Common Module</p>
+</div>
+
+<div class="p-grid">
+  <div class="p-col p-md-6 p-sm-9">
+    <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
+      Saludos {{ name }}, es un placer
+      {{ gender | i18nSelect: invitationMap }} a nuestro evento.
+      <br />
+      <br />
+      <button
+        pButton
+        pRipple
+        (click)="changePerson()"
+        type="button"
+        label="Cambiar Persona"
+        class="p-button-raised p-button-danger p-button-text"
+      ></button>
+    </p-fieldset>
+  </div>
+
+  <div class="p-col p-md-6 p-sm-9">
+    <p-fieldset legend="i18nPlural Pipe" [toggleable]="true">
+      Actualmente tenemos {{ clients.length | i18nPlural: clientsMap }}
+      <br />
+      <br />
+      <button
+        pButton
+        pRipple
+        (click)="removeClient()"
+        type="button"
+        label="Borrar Cliente"
+        class="p-button-raised p-button-text p-button-plain"
+      ></button>
+    </p-fieldset>
+  </div>
+
+  <div class="p-col p-md-6 p-sm-9">
+    <p-fieldset legend="slice Pipe" [toggleable]="true">
+      <b>original</b>
+      <pre>{{ clients }}</pre>
+
+      <b>slice:0:1</b>
+      <pre>{{ clients | slice: 0:1 }}</pre>
+    </p-fieldset>
+  </div>
+
+  <div class="p-col p-md-6 p-sm-9">
+    <p-fieldset legend="KeyValue Pipe" [toggleable]="true">
+      <ul>
+        <li *ngFor="let item of person | keyvalue">
+          {{ item.key }}: {{ item.value }}
+        </li>
+      </ul>
+    </p-fieldset>
+  </div>
+
+  <div class="p-col p-md-6 p-sm-9">
+    <p-fieldset legend="json Pipe" [toggleable]="true">
+      <pre>{{ heroes | json }}</pre>
+    </p-fieldset>
+  </div>
+
+  <div class="p-col p-md-6 p-sm-9">
+    <p-fieldset legend="Async Pipe" [toggleable]="true">
+      {{ myObservable | async }}
+      <hr />
+      <pre *ngIf="!(promiseValue | async)">Resolviendo promesa...</pre>
+      <pre>{{ promiseValue | async }}</pre>
+    </p-fieldset>
+  </div>
+</div>
